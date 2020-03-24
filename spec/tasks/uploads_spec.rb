@@ -87,9 +87,9 @@ RSpec.describe "tasks/uploads" do
 
           invoke_task
 
-          expect(post1.reload.baked_at).not_to eq(post1_baked)
-          expect(post2.reload.baked_at).not_to eq(post2_baked)
-          expect(post3.reload.baked_at).not_to eq(post3_baked)
+          expect(post1.reload.baked_at).not_to eq_time(post1_baked)
+          expect(post2.reload.baked_at).not_to eq_time(post2_baked)
+          expect(post3.reload.baked_at).not_to eq_time(post3_baked)
         end
 
         context "for an upload that is already secure and does not need to change" do
@@ -100,9 +100,9 @@ RSpec.describe "tasks/uploads" do
           end
 
           it "does not rebake the associated post" do
-            post3_baked = post3.baked_at.to_s
+            post3_baked = post3.baked_at
             invoke_task
-            expect(post3.reload.baked_at.to_s).to eq(post3_baked)
+            expect(post3.reload.baked_at).to eq_time(post3_baked)
           end
 
           it "does not attempt to update the acl" do
@@ -170,8 +170,8 @@ RSpec.describe "tasks/uploads" do
       baked_post1 = post1.baked_at
       baked_post2 = post2.baked_at
       invoke_task
-      expect(post1.reload.baked_at).not_to eq(baked_post1)
-      expect(post2.reload.baked_at).not_to eq(baked_post2)
+      expect(post1.reload.baked_at).not_to eq_time(baked_post1)
+      expect(post2.reload.baked_at).not_to eq_time(baked_post2)
     end
 
     it "updates the affected ACLs" do

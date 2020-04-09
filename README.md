@@ -6,7 +6,6 @@ Discourse is the 100% open source discussion platform built for the next decade 
 
 - mailing list
 - discussion forum
-- long-form chat room
 
 To learn more about the philosophy and goals of the project, [visit **discourse.org**](https://www.discourse.org).
 
